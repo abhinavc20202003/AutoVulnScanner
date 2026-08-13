@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Start Scan</title>
+
+    <style>
+        body {
+            background: #0f172a;
+            color: #e2e8f0;
+            font-family: Arial;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 12px;
+            width: 400px;
+            text-align: center;
+            box-shadow: 0px 4px 20px rgba(0,0,0,0.5);
+        }
+
+        h1 {
+            color: #f97316; /* orange */
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border: none;
+            outline: none;
+        }
+
+        button {
+            background: #38bdf8;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0ea5e9;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>Start Scan</h1>
+
+    <form method="POST">
+        <input type="text" name="target" placeholder="Enter target (e.g. example.com)" required>
+
+        <button type="submit">Start Scan</button>
+    </form>
+
+    <br>
+    <a href="/logout" style="color:#f87171;">Logout</a>
+</div>
+
+</body>
+</html>

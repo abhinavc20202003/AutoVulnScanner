@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Results</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            background: #0f172a;
+            color: #e2e8f0;
+            font-family: Arial;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        h1, h2 {
+            color: #f97316;
+        }
+
+        .low { color: green; }
+        .medium { color: yellow; }
+        .high { color: red; }
+
+        button {
+            padding: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+
+<h1>Scan Results</h1>
+<p>Target: {{ target }}</p>
+
+<div class="card">
+    <h2>Chart</h2>
+    <canvas id="chart"></canvas>
+</div>
+
+<div class="card">
+    <h2>Open Ports</h2>
+    <ul>
+        {% for p in open_ports %}
+        <li class="{% if 'High' in p %}high{% elif 'Medium' in p %}medium{% else %}low{% endif %}">
+            {{ p }}
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="card">
+    <h2>Filtered Ports</h2>
+    <ul>
+        {% for p in filtered_ports %}
+        <li>{{ p }}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="card">
+    <h2>Subdomains</h2>
+    <ul>
+        {% for s in subdomains %}
+        <li>{{ s }}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="card">
+    <h2>Nikto</h2>
+    <pre>{{ nikto }}</pre>
+</div>
+
+<a href="/download_pdf?target={{ target }}">
+    <button>Download PDF</button>
+</a>
+
+</div>
+
+<script>
+new Chart(document.getElementById('chart'), {
+    type: 'pie',
+    data: {
+        labels: ['Low','Medium','High'],
+        datasets: [{
+            data: [{{ low_count }}, {{ medium_count }}, {{ high_count }}],
+            backgroundColor: ['green','yellow','red']
+        }]
+    }
+});
+</script>
+
+</body>
+</html>
